@@ -8,7 +8,11 @@ GitHub : DurmushKartci
 # Solution Class holds the question's answer and solution ways
 
     # ID                -> Integer
-    # Question          -> Question Object List 
+    # Question          -> Question Object
+
+## Imports
+import os # To see and change the Directiry
+
 class Solution:
 
     #Constructor
@@ -17,34 +21,60 @@ class Solution:
         # Assign properties
         self.ID             = ID
         self.Question       = Question
+        self.solutionString = " There is no solution assigned for the question!!"
 
-        # Show the test at the console
-    def show_solution_console(self):
+        # Show the solution on the console
+    def show_solution_console(self,willPrint = True):
 
         # Create a string to prepare good format
-        solutionString = """\nSolution ID      : {}\nQuestion         : {}\n""".format(self.ID,self.Question,)
+        solutionContent = """\n
+Solution ID      : {}
+Question         : {}\n
+Solution         : {}""".format(self.ID,self.Question,self.solutionString)
 
-        # Print the file to the console
-        print(solutionString)
+        # if the user wants to print to the console
+        if willPrint:
+            # Print the file to the console
+            print(solutionContent)
 
         # Return the string to use another way
-        return solutionString
+        return solutionContent
+
+    # Save the solutoin as txt file
+    # Default path is {ID}.txt
+    def save_solution_as_txt(self,willPrint = False):
+        # Try to execute these operations
+        try:
+
+            solutionString = self.show_solution_console(False)
+
+            save_path  = os.path.join( os.getcwd()+"/Assests/Solutions/", str(self.ID)+".txt")
+
+            # If willSaved is true save the Test properties as ID+".txt" file
+            solutionFile = open(save_path,"w") 
+
+            # Write in the file 
+            solutionFile.write("--------> SOLUTİON OBJECT <--------\n")
+            solutionFile.write(solutionString)
+            solutionFile.write("\n\nAll Rights are Reserved @2021 A-MEAN Company")
+            # Close the file properly
+            solutionFile.close() 
+
+            # Inform the user
+            print(f"The Solution {self.ID} saved successfully.")
+        
+        # If any problem occurs
+        except:
+            # Inform the user !!
+            print(f"The Solution {self.ID} cannot saved !! Try again ...")
 
 
-    def save_solution_as_txt(self):
-        solutionString = self.show_solution_console()
-        # If willSaved is true save the Test properties as ID+".txt" file
-        solutionFile = open( str(self.ID)+".txt","w") 
-        solutionFile.write("--------> SOLUTİON OBJECT <--------\n")
-        solutionFile.write(solutionString)
-        solutionFile.write("\n\nAll Rights are Reserved @2021 A-MEAN Company")
-        solutionFile.close() 
 
 
 
 # DRIVER PROGRAM
 
-Math_Test_Solution = Solution(2,["Q1","Q2","Q3"])
+Math_Test_Solution = Solution(2,"Which genius is the best one !!")
 
 Math_Test_Solution.show_solution_console()
 
