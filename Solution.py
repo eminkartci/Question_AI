@@ -68,6 +68,26 @@ Solution         : {}""".format(self.ID,self.Question,self.solutionString)
             # Inform the user !!
             print(f"The Solution {self.ID} cannot saved !! Try again ...")
 
+    # We can set a soltion string
+    def set_solution_string(self,solutionString = "",willPrint = False):
+        
+        # If any inpit is not given to the function ask to the user
+        if solutionString == "":
+            # Get a soluiton
+            print(f"\nYou are submittion a solution for: \n{self.Question}")
+            solutionString = input("\nSolution: \n")
+
+        # Assign to the object
+        self.solutionString = solutionString
+        
+        # Save it to database
+        self.save_solution_as_txt()
+
+        # If the user wants to see it print it to the console
+        self.show_solution_console(willPrint)
+
+        
+
 
 
 
@@ -78,4 +98,6 @@ Math_Test_Solution = Solution(2,"Which genius is the best one !!")
 
 Math_Test_Solution.show_solution_console()
 
-Math_Test_Solution.save_solution_as_txt()
+# Math_Test_Solution.save_solution_as_txt()
+
+Math_Test_Solution.set_solution_string()
