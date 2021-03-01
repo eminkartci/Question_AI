@@ -1,0 +1,18 @@
+--------> QUESTION OBJECT <--------
+
+
+Question ID      : 2
+Question         : Which genius is the best?
+
+
+A) Sherlock
+
+B) Newton
+
+C) Darwin
+
+D) Emin
+
+E) Da Vinci
+
+All Rights are Reserved @2021 A-MEAN Company
